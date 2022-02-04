@@ -1,23 +1,24 @@
 from django.http import HttpResponse, JsonResponse 
 from django.views.decorators.csrf import csrf_exempt 
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets, permissions
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import DjangoObjectPermissions
 from rest_framework.parsers import JSONParser
 
 from .models import Snippet
 from .serializers import UserSerializer, GroupSerializer, SnippetSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [DjangoObjectPermissions]
     
     
-class GroupViewSet(viewsets.ModelViewSet):
+class GroupViewSet(ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [DjangoObjectPermissions]
 
 
 @csrf_exempt
