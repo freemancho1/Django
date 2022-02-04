@@ -13,3 +13,8 @@
 /VueTest/youtube/5.rps/dist
 /VueTest/youtube/5.rps/node_modules
 /VueTest/withFlask/__pycache__
+/MyTask/config/__pycache__
+/MyTask/frontend/__pycache__
+/MyTask/server/__pycache__
+/MyTask/frontend/migrations/__pycache__
+/MyTask/server/migrations/__pycache__
