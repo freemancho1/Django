@@ -18,3 +18,4 @@
 /MyTask/server/__pycache__
 /MyTask/frontend/migrations/__pycache__
 /MyTask/server/migrations/__pycache__
+/MyTask/db.sqlite3
