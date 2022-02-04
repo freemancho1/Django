@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>VueJS eLearning</title>
+</head>
+<body>
+    <div id="root">
+        <h3>data1: {{data1}}</h3>
+        <button type="button" @click="setData1">Set Data1</button>
+        <hr/>
+        <h3>data2: {{etc.data2}}</h3>
+        <button type="button" @click="setData2">Set Data1</button>
+        <hr/>
+        <h3>counter: {{counter}}</h3>
+        <p>New Value: {{newVal}}, Old Value: {{oldVal}}</p>
+        <button type="button" @click="addCounter">Add Counter</button>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+                data1: 100,
+                etc: {},
+                counter: 0,
+                newVal: 0,
+                oldVal: 0,
+            },
+            methods: {
+                setData1: function() {
+                    this.data1 = this.data1 === 100 ? 200: 100;
+                },
+                setData2: function() {
+                    this.etc.data2 = this.etc.data2 === 1000 ? 2000: 1000;
+                },
+                addCounter: function() {
+                    this.counter++;
+                },
+            },
+            watch: {
+                // #1
+                counter: function(newVal, oldVal) {
+                    this.newVal = newVal;
+                    this.oldVal = oldVal;
+                },
+            }
+        });
+
+        Vue.set(app.etc, 'data2', 1000);
+
+        // #2 = #1
+        app.$watch('counter', function(newVal, oldVal) {
+            this.newVal = newVal;
+            this.oldVal = oldVal;
+        });
+    </script>
+</body>
+</html>

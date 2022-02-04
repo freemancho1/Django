@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Computed : Get and Set</title>
+</head>
+<body>
+    <div id="root">
+        <input type="text" v-model="a1"/><br/>
+        <input type="text" v-model="a2"/><br/>
+        <input type="text" v-model="a3"/><br/>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+                a1: '',
+                a2: '',
+            },
+            methods: {
+            },
+            watch: {
+            },
+            computed: {
+                a3: {
+                    get() {
+                        return `${this.a1},${this.a2}`;
+                    },
+                    set(newVal) {
+                        const list = newVal.split(',');
+                        if (list.length >= 2) {
+                            this.a1 = list[0];
+                            this.a2 = list[1];
+                        }
+                    },
+                },
+            }
+        });
+    </script>
+</body>
+</html>

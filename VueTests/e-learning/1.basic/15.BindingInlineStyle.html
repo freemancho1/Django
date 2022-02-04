@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Binding Inline Style.</title>
+</head>
+<body>
+    <div id="root">
+        <h3 style="background-color:yellow; color:red;">Original Style</h3>
+        <!--If there is a '-' in the CSS property name, 
+            remove the '-' and change the next character to uppercase.-->
+        <h3 :style="{backgroundColor:bgColor, color:color}"
+            @click="changeStyle">Vue Style</h3>
+        <h3 :style="mainStyle" @click="changeStyle2">Vue Style with Object</h3>
+    </div>
+    <script>
+        let status = true;
+        const app = new Vue({
+            el: "#root",
+            data: {
+                bgColor: "yellow",
+                color: "red", 
+                mainStyle: {
+                    backgroundColor: "red",
+                    color: "yellow",
+                },
+            },
+            methods: {
+                changeStyle() {
+                    if (status === true) {
+                        status = false;
+                        this.bgColor = "red";
+                        this.color = "yellow";
+                    } else {
+                        status = true;
+                        this.bgColor = "yellow";
+                        this.color = "red";
+                    }
+                },
+                changeStyle2() {
+                    if (this.mainStyle.backgroundColor === "red") {
+                        this.mainStyle.backgroundColor = "yellow";
+                        this.mainStyle.color = "red";
+                    } else {
+                        this.mainStyle.backgroundColor = "red";
+                        this.mainStyle.color = "yellow";
+                    }
+                },
+            },
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>VueJS eLearning</title>
+</head>
+<body>
+    <div id="root">
+        <router-link to="/">Home</router-link>
+        <router-link to="/page1/test1">Page1</router-link>
+        <router-link to="/page1/test2">Page1</router-link>
+        <router-link to="/page2/11/22">Page2</router-link>
+        <!--"router-view": The part of the HTML page to be changed.-->
+        <router-view></router-view>
+    </div>
+    <script>
+        const homeComponent = {
+            template: "<h3>Home page</h3>"
+        }
+        const page1Component = {
+            template: "<h3>Page1 page: {{$route.params.data1}}</h3>"
+        }
+        const page2Component = {
+            template: `<h3>Page2 page: 
+                {{$route.params.data1}}, {{$route.params.data2}}</h3>`
+        }
+
+        const router = new VueRouter({
+            routes: [
+                {path: "/", component: homeComponent,},
+                {path: "/page1/:data1", component: page1Component,},
+                {path: "/page2/:data1/:data2", component: page2Component,},
+            ]
+        });
+        const app = new Vue({
+            el: "#root",
+            data: {
+            },
+            methods: {
+            },
+            router: router
+        });
+    </script>
+</body>
+</html>

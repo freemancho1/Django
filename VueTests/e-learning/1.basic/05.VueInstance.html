@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>VueInstances</title>
+</head>
+<body>
+    <div id="root">
+        <h2>{{str1}}</h2>
+        <h2>{{int1}}</h2>
+        <h2>{{float1}}</h2>
+    </div>
+    <div class="classes">
+        <h2>{{str2}}</h2>
+        <h2>{{int2}}</h2>
+        <h2>{{float2}}</h2>
+    </div>
+    <div class="classes">
+        <h2>{{str2}}</h2>
+        <h2>{{int2}}</h2>
+        <h2>{{float2}}</h2>
+    </div>    
+    <script>
+        const app = new Vue({
+            el: '#root',
+            data: {
+                str1: "문자열1",
+                int1: 100,
+                float1: 11.11,
+            },
+        });
+        const app2 = new Vue({
+            el: ".classes",
+            data: {
+                str2: "문자열2",
+                int2: 200,
+                float2: 22.22,
+            },
+        });
+        console.log(app.str1);
+        console.log(app.$data.str1);
+    </script>
+</body>
+</html>

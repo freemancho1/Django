@@ -1,0 +1,54 @@
+<!DOCUMENT html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" 
+            content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1"/>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Gugudan</title>
+    </head>
+
+    <body>
+        <div id="root">
+            <div>
+                <h1>{{a}} X {{b}} is?</h1>
+            </div>
+            <div>
+                <form v-on:submit="onSubmitForm">
+                    <input type="Number" v-model="input" ref="input"/>
+                    <button type="submit">Result</button>
+                </form>
+                <div>{{result}}</div>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        const app = new Vue({
+            el: '#root',
+            data: {
+                a: Math.ceil(Math.random()*9),
+                b: Math.ceil(Math.random()*9),
+                input: null,
+                result: null,
+            },
+            methods: {
+                onSubmitForm(e) {
+                    e.preventDefault();
+                    if (this.a * this.b === parseInt(this.input)) {
+                        this.result = 'Correct Answer'
+                        this.a = Math.ceil(Math.random()*9);
+                        this.b = Math.ceil(Math.random()*9);
+                    } else {
+                        this.result = 'Wrong';
+                    }
+                    this.input = null;
+                    this.$refs.input.focus();
+                },
+            },
+        })
+    </script>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>VueInstances</title>
+</head>
+<body>
+    <div id="root">
+        <div>{{a1}}</div>
+        <button type="button" @click="setValue">Change Value</button>
+    </div>
+    <script>
+        const app = new Vue({
+            // el: "#root",
+            data: {
+                a1: 100,
+            },
+            methods: {
+                setValue: function() {
+                    this.a1 = 200;
+                    console.log('change value!!')
+                    setTimeout(() => {
+                        app.$destroy("#root");
+                    }, 2000);
+                    setTimeout(() => {
+                        app.$mount("#root");
+                    }, 2000);
+                },
+            },
+            beforeCreate: function() {
+                console.log(`beforeCreate: ${this.a1}`);
+            },
+            created: function() {
+                console.log(`create: ${this.a1}`);
+            },
+            beforeMount: function() {
+                console.log(`beforeMount: ${this.a1}`);
+            },
+            mounted: function() {
+                console.log(`mounted: ${this.a1}`);
+            },
+            beforeUpdate: function() {
+                console.log(`beforeUpdate: ${this.a1}`);
+            },
+            updated: function() {
+                console.log(`update: ${this.a1}`);
+            },
+            beforeDestroy: function() {
+                console.log(`before destroy ${this.a1}`);
+            },
+            destroyed: function() {
+                console.log(`destroyed ${this.a1}`);
+            },
+        });
+
+        setTimeout(() => {
+            app.$mount("#root");
+        }, 2000);
+    </script>
+</body>
+</html>

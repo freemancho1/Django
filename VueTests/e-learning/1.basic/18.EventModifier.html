@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>VueJS eLearning</title>
+</head>
+<body>
+    <div id="root">
+        <div class="box" @click="method1">
+            <!--Executes an event by moving upwards from itself-->
+            <!--Execution order: method2 -> method1-->
+            <button type="button" @click="method2">Button1</button>
+            <!--Handle only this event-->
+            <button type="button" @click.stop="method2">Button2</button>
+        </div>
+        <div class="box" @click.capture="method1">
+            <!--Execution order: method1 -> method2-->
+            <button type="button" @click="method2">Button1</button>
+        </div>
+        <!--If it is not clicked, it will not be executed.-->
+        <div class="box" @click.self="method1">
+            <button type="button" @click="method2">Button1</button>
+        </div>
+        <!--Block the click function of that orginal HTML tag-->
+        <a @click.prevent href="https://www.kdn.com">KDN1</a>
+        <a @click.prevent="method1" href="https://www.kdn.com">KDN2</a>
+        <!--Executed the event only once and not after that.-->
+        <!--In the case below, mothod1 is executed only once,
+            and then a-tag function is executed.-->
+        <a @click.prevent.once="method1" href="https://www.kdn.com">KDN3</a>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+            },
+            methods: {
+                method1: function() {
+                    console.log("method1 click");
+                },
+                method2: function() {
+                    console.log("method2 click");
+                }
+            },
+        });
+    </script>
+    <style scope>
+        .box {
+            width: 200px; height: 30px;
+            border: 1px solid black;
+        }
+    </style>
+</body>
+</html>

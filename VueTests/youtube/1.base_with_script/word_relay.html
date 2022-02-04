@@ -1,0 +1,48 @@
+<!DOCUMENT html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" 
+            content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1"/>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Word Relay</title>
+    </head>
+
+    <body>
+        <div id="root">
+            <div>직전 단어: {{word}}</div>
+            <form v-on:submit="onSubmitForm">
+                <input type="text" v-model="input" ref="input" />
+                <button type="submit">Input</button>
+            </form>
+            <div>{{result}}</div>
+        </div>
+    </body>
+
+    <script>
+        const app = new Vue({
+            el: '#root',
+            data: {
+                word: '조효석', 
+                input: '',
+                result: '',
+            },
+            methods: {
+                onSubmitForm(e) {
+                    e.preventDefault();
+                    if (this.word[this.word.length-1] === this.input[0]) {
+                        this.result = 'Ok';
+                        this.word = this.input;
+                    } else {
+                        this.result = 'Error';
+                    }
+                    this.input = '';
+                    this.$refs.input.focus();
+                },
+            },
+        })
+    </script>
+
+</html>

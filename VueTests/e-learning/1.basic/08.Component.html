@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Component</title>
+</head>
+<body>
+    <div id="root">
+        <inner-component></inner-component>
+        <root-component></root-component>
+    </div>
+    <hr/>
+    <div id="container">
+        <component v-bind:is="view"></component>
+        <button type="button" @click="ocChangeView">Change View</button>
+    </div>
+    <script>
+        Vue.component("rootComponent", {
+            template: `
+                <div>
+                    <h3>First H3 tag</h3>
+                    <p>score: {{score}}</p>
+                </div>`,
+            data() {
+                return {
+                    score: 100,
+                };
+            },
+        });
+
+        const app = new Vue({
+            el: "#root",
+            components: {
+                "innerComponent": {
+                    template: `
+                        <div>
+                            <h3>Inner Component</h3>
+                            <!--In html string, {{showMessage}} is error, 
+                                but in tag, fine -->
+                            <p>{{showMessage()}}</p>
+                        </div>`,
+                    // In component, 'data: msg: ...,' is error
+                    data() {
+                        return {
+                            msg: "My Message",
+                        };
+                    },
+                    methods: {
+                        showMessage() {
+                            return `Message: ${this.msg}`;
+                        },
+                    },
+                },
+            },
+        });
+
+        const container = new Vue({
+            el: "#container",
+            components: {
+                "innerComponent": {
+                    template: "<div>Inner Components</div>",
+                }
+            },
+            data: {
+                status: true,
+                view: "innerComponent",
+            },
+            methods: {
+                ocChangeView() {
+                    if (this.status) {
+                        this.view = "rootComponent";
+                        this.status = false;
+                    } else {
+                        this.view = "innerComponent";
+                        this.status = true;
+                    }
+                    console.log(this.status);
+                },
+            },
+        })
+    </script>
+</body>
+</html>

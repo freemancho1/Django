@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Computed.</title>
+</head>
+<body>
+    <div id="root">
+        <h3>A1: {{a1}}</h3>
+        <h3>A2: {{a2}}</h3>
+        <h3>A1 + A2 = {{add()}}</h3>        <!-- Call 3 times -->   
+        <h3>A1 + A2 = {{addComputed}}</h3>  <!-- Call 1 times, because 'computed' is caching -->
+        <h3>A1 + A2 = {{add()}}</h3>
+        <h3>A1 + A2 = {{addComputed}}</h3>        
+        <h3>A1 + A2 = {{add()}}</h3>
+        <h3>A1 + A2 = {{addComputed}}</h3>
+        <button type="button" @click="ocChangeValue">Change Value</button>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+                a1: 10,
+                a2: 20,
+            },
+            methods: {
+                add() {
+                    console.log("method");
+                    return this.a1 + this.a2;
+                },
+                ocChangeValue() {
+                    this.a1 = 11;
+                },
+            },
+            computed: {
+                addComputed() {
+                    console.log("computed")
+                    return this.a1 + this.a2;
+                },
+            },
+        });
+    </script>
+</body>
+</html>

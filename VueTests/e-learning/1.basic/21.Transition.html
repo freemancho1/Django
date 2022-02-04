@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>VueJS eLearning</title>
+</head>
+<body>
+    <div id="root">
+        <transition name="fade">
+            <h1 v-if="show1">Fade String</h1>
+        </transition>
+        <transition name="bounce">
+            <h1 v-if="show1">Bounce String Bounce String</h1>
+        </transition>
+        <transition name="fade" 
+            @before-enter="beforeEnter" 
+            @enter="enter"
+            @after-enter="afterEnter"
+            @enter-cancelled="enterCancelled"
+            @before-leave="beforeLeave">
+            <h1 v-if="show1">Fade event</h1>
+        </transition>
+        <button type="button" @click="setShow1">{{btnStr}}</button>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+                show1: true,
+                btnStr: "Hidden",
+            },
+            methods: {
+                setShow1: function() {
+                    this.show1 = this.show1 ? false: true;
+                    this.btnStr = this.show1 ? "Hidden": "Show";
+                },
+                beforeEnter: function() {
+                    console.log("beforeEnter");
+                },
+                enter: function() {
+                    console.log("Enter");
+                },
+                afterEnter: function() {
+                    console.log("afterEnter");
+                },
+                enterCancelled: function() {
+                    console.log("Enter Cancelled");
+                },
+                beforeLeave: function() {
+                    console.log("beforeLeave");
+                },
+            },
+        });
+    </script>
+    <style scope>
+        .fade-enter-active, .fade-leave-active {
+            transition: all 1s;
+        }
+        .fade-enter, fade-leave-to {
+            opacity: 0;
+        }
+        .fade-enter-to, fade-leave {
+            opacity: 1;
+        }
+        .bounce-enter-active {
+            animation: bounce-in .5s;
+        }
+        .bounce-leave-active {
+            animation: bounce-in .5s reverse;
+        }
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transfrom: scale(1.5);
+            }
+            100% {
+                transfrom: scale(1);
+            }
+        }
+    </style>
+</body>
+</html>

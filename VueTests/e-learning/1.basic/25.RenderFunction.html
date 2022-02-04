@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>VueJS eLearning</title>
+</head>
+<body>
+    <div id="root">
+        <comp1>Freeman</comp1>
+        <comp1>Cho</comp1>
+        <comp1>Johyoseok</comp1>
+        <hr/>
+        <comp2></comp2>
+        <comp2> </comp2>
+        <comp2 :tag-name="'h3'">Freeman</comp2>
+    </div>
+    <script>
+        Vue.component("comp1", {
+            template: "<h3><slot></slot></h3> ",
+        });
+        Vue.component("comp2", {
+            render: function(createElement) {
+                let msg = "Default Message";
+                if (this.$slots.default !== undefined) {
+                    msg = this.$slots.default[0].text;
+                }
+                let tagName = "h1";
+                if (this.tagName !== undefined) {
+                    tagName = this.tagName;
+                }
+                //let tag_h1 = createElement("h1", {
+                //    id: "a1", style: "color: red; background-color: yellow;",
+                //}, msg);
+                let tag_h1 = createElement(tagName, {
+                    attrs: {
+                        id: "a1", class: "mystyle",
+                    }, 
+                    style: {
+                        color: "red",
+                        backgroundColor: "yellow",
+                    },
+                }, msg);
+                return tag_h1;
+            },
+            props: {
+                tagName: {attributes: String},
+                //tagName: {attributes: String, required: true},
+            }
+        });
+        const app = new Vue({
+            el: "#root",
+            data: {
+            },
+            methods: {
+            },
+        });
+    </script>
+</body>
+</html>

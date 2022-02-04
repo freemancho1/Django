@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Form Binding.</title>
+</head>
+<body>
+    <div id="root">
+        <h1>Input type text</h1>
+        <input type="text" v-model="input1" placeholder="Enter text"/>
+        <h3>Input1: {{input1}}</h3>
+        <input type="text" v-model.lazy.trim="input9" placeholder="Enter text"/>
+        <h3>Input.lazy.trim: [{{input9}}]</h3>
+        <input type="text" v-model.number="inputa" placeholder="Enter number"/>
+        <h3>Input.number: {{inputa}}</h3>
+        <hr/>
+
+        <h1>Input textarea</h1>
+        <textarea v-model=input2></textarea>
+        <pre>{{input2}}</pre>
+        <hr/>
+        
+        <h1>Input Checkbox</h1>
+        <input type="checkbox" v-model="input3"/> CheckBox3     <!--Each has a variable name-->
+        <input type="checkbox" v-model="input4"/> CheckBox4
+        <input type="checkbox" v-model="input5"/> CheckBox5
+        <h3>input3: {{input3}}, input4: {{input4}}, input5: {{input5}}</h3>
+        <input type="checkbox" v-model="input6" ref="input6" value="100"/> CheckBox6
+        <h3>input6: {{input6}}</h3>
+        <hr/>
+        
+        <h1>Input type radio</h1>
+        <input type="radio" v-model="input7" value="r1"/> Radio1<!--One variable name-->
+        <input type="radio" v-model="input7" value="r2"/> Radio2 
+        <input type="radio" v-model="input7" value="r3"/> Radio3
+        <h3>Radio: {{input7}}</h3>
+
+        <h1>Input select</h1>
+        <select v-model="input8">
+            <option value="1">item1</option>
+            <option value="2">item2</option>
+            <option value="3">item3</option>
+        </select>
+        <h3>Select: {{input8}}</h3>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+                input1: '',
+                input2: '',
+                input3: false,
+                input4: false,
+                input5: false,
+                input6: false,
+                input7: 'r2',
+                input8: "2",
+                input9: '',
+                inputa: '',
+            },
+            watch: {
+                input6() {
+                    console.log(this.$refs.input6.value);
+                },
+                inputa() {
+                    console.log(typeof(this.inputa));
+                }
+            },
+            methods: {
+            },
+        });
+    </script>
+</body>
+</html>

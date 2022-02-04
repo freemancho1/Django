@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>VueJS eLearning</title>
+</head>
+<body>
+    <div id="root">
+        <ul>
+            <li v-for="(a, i) in array1">{{i}}, {{a}}</li>
+        </ul>
+        <hr/>
+        <h3>My Memo</h3>
+        <p>Click on an item to delete it.</p>
+        <ul>
+            <li v-for="(memo, i) in memos" @click="deleteMemo(i)">{{memo}}</li>
+        </ul>
+        <input type="text" ref="memo" v-model="memo"/>
+        <button type="button" @click="addMemo">Add Memo</button>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+                array1: [10, 20, 30, 40, 50],
+                memos: [],
+                memo: '',
+            },
+            methods: {
+                addMemo: function() {
+                    this.memos.push(this.memo);
+                    this.memo = '';
+                    this.$refs.memo.focus();
+                },
+                deleteMemo: function(idx) {
+                    this.memos.splice(idx,1);
+                    this.$refs.memo.focus();
+                }
+            },
+        });
+    </script>
+</body>
+</html>

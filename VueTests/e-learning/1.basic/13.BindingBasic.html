@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>BindingBasics</title>
+</head>
+<body>
+    <div id="root">
+        <!-- Using Data Name -->
+        <h3 :class="h3Back">Binding Basic</h3>          <!-- One class -->
+        <p :class="[h3Back, h3Forward]">Two classes</p> <!-- Two classes over -->
+        <p :class="[isH3Back ? h3Back : '', isH3Forward ? h3Forward : '']">Two classes</p>
+
+        <!-- Using Style Name -->
+        <h3 :class="{cssH3Back:isH3Back}">Binding Basic</h3>         
+        <p :class="{cssH3Back:isH3Back, cssH3Forward:isH3Forward}">Two classes</p> 
+
+        <a :href="link">VueJS Korea</a><br/>
+        <img src="https://brandeps.com/logo-download/V/Vue-JS-logo-vector-01.svg"
+             width="200" height="200"/> <br/>
+        <img :src="imageUri" :class="imageCss"
+             @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+                h3Back: "cssH3Back",
+                h3Forward: "cssH3Forward",
+                isH3Back: true,
+                isH3Forward: false,
+                link: "https://kr.vuejs.org",
+                imageUri: "https://brandeps.com/logo-download/V/Vue-JS-logo-vector-01.svg",
+                imageCss: "normalSize",
+            },
+            methods: {
+                onMouseEnter() {
+                    this.imageCss = "bigSize";
+                },
+                onMouseLeave() {
+                    this.imageCss = "normalSize";
+                },
+            },
+        });
+    </script>
+    <style scope>
+        .normalSize {
+            width: 200px;
+            height: 200px;
+        }
+        .bigSize {
+            width: 400px;
+            height: 400px;
+        }
+        .cssH3Back {
+            background-color: yellow;
+        }
+        .cssH3Forward {
+            color: red;
+        }
+    </style>
+</body>
+</html>

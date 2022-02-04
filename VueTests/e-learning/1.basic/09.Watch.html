@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Watch</title>
+</head>
+<body>
+    <div id="root">
+        Input 1: <input type="text" v-model="a1"/> <br/>
+        Input 2: <input type="text" v-model="a2"/> <br/>
+        <h3>{{a1}}</h3>
+        <h3>{{a2}}</h3>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+                a1: '',
+                a2: '',
+            },
+            watch: {
+                // data.attr name = function name
+                a1(newVal, oldVal) {
+                    console.log(`A1, New: ${newVal}, Old: ${oldVal}`);
+                },
+                a2(newVal, oldVal) {
+                    console.log(`A2, New: ${newVal}, Old: ${oldVal}`);
+                }
+            },
+            methods: {
+            },
+        });
+    </script>
+</body>
+</html>

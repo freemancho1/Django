@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>VueJS eLearning</title>
+</head>
+<body>
+    <div id="root">
+        <input type="text" v-focus/>
+        <input type="text" v-model="input1" v-focus2/>
+        <h3 v-test v-if="str !== ''">{{str}}</h3>
+        <button type="button" @click="setStr">Set String</button>
+        <hr/>
+
+        <h3 v-test2="data1">{{str}}</h3>
+        <h3 v-test2:arg1="data1">{{str}}</h3>
+        <h3 v-test2:arg1.a1.a2="data1">{{str}}</h3>
+    </div>
+    <script>
+        Vue.directive("focus", {
+            inserted: function(el) {
+                console.log("all.focus.inserted");
+            }
+        });
+
+        const app = new Vue({
+            el: "#root",
+            data: {
+                input1: "",
+                str: "",
+                data1: "data1 value",
+            },
+            methods: {
+                setStr: function() {
+                    this.str = this.input1;
+                },
+            },
+            directives: {
+                focus2: {
+                    inserted: function(el) {
+                        console.log("app.focus2.inserted");
+                    }
+                },
+                test: {
+                    // Called once when the directive is bound to HTML.
+                    bind: function(el) {
+                        console.log("app.test.bind");
+                    },
+                    // Called once when a value is assigned to that tag.
+                    inserted: function(el) {
+                        console.log("app.test.inserted");
+                    },
+                    // Called before the component containing the tag is updated.
+                    update: function(el) {
+                        console.log("app.test.update");  
+                    },
+                    // Called after the component containing the tag is updated.
+                    componentUpdated: function(el) {
+                        console.log("app.test.componentUpdate");
+                    },
+                    // Called when a tag is deleted(v-if, ...);
+                    unbind: function(el) {
+                        console.log("app.test.unbind");
+                    },
+                },
+                test2: {
+                    bind: function(el, binding, vnode) {
+                        console.log("b.name: " + binding.name);
+                        console.log("b.value: " + binding.value);
+                        console.log("b.arg: " + binding.arg);
+                        console.log("b.a1: " + binding.modifiers.a1);   // true
+                        console.log("b.a3: " + binding.modifiers.a3);   // undefinded
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+</html>

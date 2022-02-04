@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Computed and Watch</title>
+</head>
+<body>
+    <div id="root">
+        <input type="text" v-model="a1"/><br/>
+        <input type="text" v-model="a2"/>
+
+        <hr/>
+        <h3>Result:</h3>
+        <div v-html="result"></div>
+
+        <hr/>
+        <h3>ResultMessage:</h3>
+        <div v-html="displayMsg"></div>
+        <div v-html="result2"></div>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+                a1: '',
+                a2: '',
+                result: '',
+                result2: '',
+            },
+            methods: {
+            },
+            watch: {
+                a1() {
+                    this.result = "A1: " + this.a1 + "<br/>A2: " + this.a2
+                },
+                a2() {
+                    this.result = "A1: " + this.a1 + "<br/>A2: " + this.a2
+                },
+            },
+            computed: {
+                displayMsg() {
+                    console.log(this.result2)
+                    return this.result = "A1: " + this.a1 + "<br/>A2: " + this.a2
+                },
+                getDisplayMsg() {   // Visible using the vue-tools
+                    console.log("get");
+                    this.result2 = this.result = "A1: " + this.a1 + "<br/>A2: " + this.a2
+                },
+            }
+        });
+    </script>
+</body>
+</html>

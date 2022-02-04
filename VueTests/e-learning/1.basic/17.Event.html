@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>VueJS eLearning</title>
+</head>
+<body>
+    <div id="root">
+        <button type="button" @click="ocAlert">Alert Display</button>
+        <img :src="imageUri" @click="ocImage" width="200"/>
+        <hr/>
+
+        <input type="number" v-model.number="input1" 
+               @focus="ofInput" @blur="obInput" placeholder="Input number."/>
+        <input type="number" v-model.number="input2" 
+               @focus="ofInput" @blur="obInput" placeholder="Input number."/>
+        <h3>Multi-Result: {{result}}</h3>
+        <hr/>
+
+        <h3 :class="inOutCss" @mouseenter="meMouse" @mouseleave="mlMouse">Mouse In/Out CSS</h3>
+    </div>
+    <script>
+        let inputCount = 0;
+        const app = new Vue({
+            el: "#root",
+            data: {
+                imageUri: "https://brandeps.com/logo-download/V/Vue-JS-logo-vector-01.svg",
+                input1: 0,
+                input2: 0,
+                result: '',
+                inOutCss: "out",
+            },
+            methods: {
+                obInput() {
+                    inputCount++;
+                    console.log(inputCount);
+                    if (inputCount >= 2) {
+                        this.result = `${this.input1} X ${this.input2} = ${this.input1 * this.input2}`;
+                        inputCount = 0;
+                    }
+                },
+                ofInput(e) {
+                    e.currentTarget.value = '';
+                },
+                ocAlert() {
+                    alert("Alert Message!");
+                },
+                ocImage() {
+                    alert("Image Click!!");
+                },
+                meMouse() {
+                    this.inOutCss = "in";
+                },
+                mlMouse() {
+                    this.inOutCss = "out";
+                },
+            },
+        });
+    </script>
+    <style>
+        .in {background-color: red; color: yellow;}
+        .out {background-color: yellow; color: red;}
+    </style>
+</body>
+</html>

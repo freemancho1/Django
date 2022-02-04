@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>VueJS eLearning</title>
+</head>
+<body>
+    <div id="root">
+        <button type="button" @click="toggleLogs">Toggle Logs</button>
+        <button type="button" @click="test1">Test1</button>
+    </div>
+    <script>
+        const myMixin = {
+            created: function() {
+                console.log("myMixin.created");
+            },
+            methods: {
+                test1: function() {
+                    console.log("myMixin.methods.test1");
+                },
+                test2: function() {
+                    console.log("myMixin.methods.test2");
+                },
+            }
+        };
+        //const Component = Vue.extend({
+        //    mixins: [myMixin],
+        //})
+        //const component = new Component();
+
+        let toggle = true;
+        const app = new Vue({
+            el: "#root",
+            data: {
+            },
+            methods: {
+                toggleLogs: function() {
+                    if (toggle === true) {
+                        this.test1();
+                        toggle = false;
+                    } else {
+                        this.test2();
+                        toggle = true;
+                    }
+                },
+            },
+            mixins: [myMixin],
+        });
+    </script>
+</body>
+</html>

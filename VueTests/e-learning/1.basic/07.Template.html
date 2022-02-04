@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Template</title>
+</head>
+<body>
+    <div id="root">
+        <h3>{{a1}}</h3>
+        <h3>{{a2}}</h3>
+        <div>{{a3}}</div>
+        <div v-html="a3"></div>
+        <img v-bind:src="a4" v-bind:width="width" v-bind:height="height"/>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+                a1: "String 1",
+                a2: "String 2",
+                a3: "<h3>String 3</h3>",
+                width: 500,
+                height: 200,
+                a4: "https://media.vlpt.us/post-images/katanazero86/aba9c930-4af7-11ea-b431-d56bc1d096a4/vuejs-tutorial2d2a853c-aa2f-44b0-80df-933b495f77f8.png",
+            },
+            methods: {
+            },
+        });
+    </script>
+</body>
+</html>

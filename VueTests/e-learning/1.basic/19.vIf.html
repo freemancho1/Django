@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>VueJS eLearning</title>
+</head>
+<body>
+    <div id="root">
+        <div v-if="a1 === 100">a1은 100입니다.</div>
+        <div v-else>a1은 200입니다.</div>
+        <div v-show="a1 === 100">a1은 100입니다.</div>
+        <div v-show="a1 !== 100">a1은 200입니다.</div>
+        <button type="button" @click="toggleA1">Change Value</button>
+        <hr/>
+
+        <!--'template' tag is not rendering-->
+        <template v-if="a1 === 100">
+            <p>a1은 100입니다.</p>
+            <p>a1은 100입니다.</p>
+        </template>
+        <template v-else>
+            <p>a1은 100이 아닙니다.</p>
+            <p>a1은 100이 아닙니다.</p>
+        </template>
+        <hr/>
+
+        <div v-if="a2 === 100">a2는 100입니다.</div>
+        <div v-else-if="a2 === 200">a2는 200입니다.</div>
+        <div v-else>a2는 300입니다.</div>
+        <button type="button" @click="toggleA2">Change Value</button>
+        <hr/>
+
+        <div v-if="a3 === 100">
+            <h3>data1</h3>
+            <input type="text" key="data1"/>
+            <input type="text" v-model="a1" key="data1"/>
+        </div>
+        <div v-else>
+            <h3>data2</h3>
+            <input type="text" key="data2"/>
+            <input type="text" v-model="a2" key="data2"/>
+        </div>
+        <button type="button" @click="toggleA3">Change Value</button>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+                a1: 100,
+                a2: 100,
+                a3: 100,
+            },
+            methods: {
+                toggleA1: function() {
+                    if (this.a1 === 100) {
+                        this.a1 = 200;
+                    } else {
+                        this.a1 = 100;
+                    }
+                },
+                toggleA2: function() {
+                    if (this.a2 === 100) {
+                        this.a2 = 200;
+                    } else if (this.a2 === 200) {
+                        this.a2 = 300;
+                    } else {
+                        this.a2 = 100;
+                    }
+                },
+                toggleA3: function() {
+                    if (this.a3 === 100) {
+                        this.a3 = 200;
+                    } else {
+                        this.a3 = 100;
+                    }
+                },
+            },
+        });
+    </script>
+</body>
+</html>
