@@ -1,0 +1,7 @@
+django
+djangorestframework
+django-filter
+django-guardian
+markdown
+pygments
+mysqlclient
