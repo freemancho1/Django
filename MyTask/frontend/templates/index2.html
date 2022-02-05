@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="{% static 'images/favorite.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bs5.0.2/css/bootstrap.min.css' %}"/>
+    <script src="{% static 'vendor/bs5.0.2/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/vue2.6.14.js' %}"></script>
+    <script src="{% static 'vendor/vue-router3.5.3.js' %}"></script>
+    <script src="{% static 'vendor/http-vue-loader1.4.2.js' %}"></script>
+    <script src="{% static 'vendor/axios0.25.0.js' %}"></script>
+    <script src="{% static 'vendor/vuex.3.6.2.js' %}"></script>
+    <title>MyTasks</title>
+</head>
+<body>
+    <div class="container">
+        <h1 align="center">MyTasks</h1>
+        <br/>
+        <div id="root">
+            <div class="form-group">
+                <label for="title">Task Title:</label>
+                <input type="text" id="title" v-model="title" class="form-control"/>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label for="memo">Task Memo:</label>
+                <textarea id="memo" v-model="memo" class="form-control" rows="3"></textarea>
+            </div>
+            <br/>
+            <div class="form-group">
+                <div class="text-center">
+                    <button type="button" @click="checkInput" class="btn btn-success">Add Task</button>
+                </div>
+            </div>
+            <br/>
+            <div v-for="(obj, idx) in server_data" :key="idx" class="row">
+                <div class="col-4">
+                    {:obj.title:}
+                </div>
+                <div class="col">
+                    {:obj.memo:}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+                title: '',
+                memo: '',
+                server_data: {},
+            },
+            methods: {
+                checkInput() {}
+            },
+            created() {
+                axios.get("server/task/1").then((response) => {
+                    this.server_data = response.data.results;
+                    console.log(this.server_data);
+                    console.log(response.data);
+                });
+            },
+            delimiters: ["{:", ":}"],
+        });
+    </script>
+</body>
+</html>

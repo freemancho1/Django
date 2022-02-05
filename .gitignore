@@ -15,7 +15,10 @@
 /VueTest/withFlask/__pycache__
 /MyTask/config/__pycache__
 /MyTask/frontend/__pycache__
+/MyTask/frontend/templates/dist
+/MyTask/frontend/templates/node_modules
 /MyTask/server/__pycache__
 /MyTask/frontend/migrations/__pycache__
 /MyTask/server/migrations/__pycache__
 /MyTask/db.sqlite3
+/VueTests/e-learning/9.test/nodejs/node_modules

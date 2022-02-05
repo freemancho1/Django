@@ -21,7 +21,8 @@ from server import views
 
 
 router = routers.DefaultRouter()
-router.register(r'', views.TaskViewSet)
+router.register(r'task', views.TaskViewSet)
+router.register(r'user', views.UserViewSet)
 
 
 urlpatterns = [
