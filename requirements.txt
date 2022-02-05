@@ -5,3 +5,7 @@ django-guardian
 markdown
 pygments
 mysqlclient
+django-cors-headers
+djoser
+pillow
+stripe
