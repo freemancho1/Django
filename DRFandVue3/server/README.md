@@ -1,3 +1,11 @@
+# server - Django REST Framework with drf-simplejwt
+<br/><br/>
+
+## Project setup
+<br/>
+
+### requirements.txt
+```python
 asgiref==3.5.0
 certifi==2021.10.8
 cffi==1.15.0
@@ -38,3 +46,4 @@ stripe==2.66.0
 uritemplate==4.1.1
 urllib3==1.26.8
 zipp==3.7.0
+```
