@@ -1,0 +1,62 @@
+@import './config';
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #26405a;
+}
+
+.root-page {
+  background-color: $app-bg-color;
+}
+
+
+.view-page {
+  background-color: $view-bg-color;
+}
+
+.main-menu {
+  width: 100%; height: 70px;
+  background-color: $menu-bg-color;
+
+  span {
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: $menu-color;
+    cursor: pointer;
+
+    &:hover {
+      color: $menu-active-color;
+    }
+
+    &.active {
+      color: $menu-active-color;
+      text-shadow: 3px 3px 3px $menu-shadow-color;
+      border-bottom: 3px solid $view-bg-color;
+      // border-radius: 20px;
+      padding-bottom: 5px;
+    }
+
+    &.project-name {
+      color: $menu-active-color;
+      font-size: 20px !important;
+      text-shadow: 3px 3px 3px $menu-shadow-color;
+    }
+  }
+
+  .right-menu {
+    // position: absolute;
+    padding-top: 5px;
+  }
+
+  img {
+    height: 35px;
+    margin-top: -10px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+}
