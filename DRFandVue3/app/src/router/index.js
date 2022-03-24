@@ -4,11 +4,43 @@ import store from '../store/index'
 import Home from '../views/Home.vue'
 
 const routes = [
-  { path: '/', name: 'Home', component: Home },
-  { path: '/read-me', name: 'About', component: () => import('../views/About.vue') },
-  { path: '/vue3-syntax', name: 'Vue3Syntax', component: () => import('../views/Vue3Syntax.vue') },
-  { path: '/js-syntax', name: 'JsSyntax', component: () => import('../views/JsSyntax.vue') },
-  { path: '/todo-list', name: 'TodoList', component: () => import('../views/TodoList.vue') },
+  { 
+    path: '/', 
+    name: 'Home', 
+    component: Home 
+  },
+  { 
+    path: '/read-me', 
+    name: 'About', 
+    component: () => import('../views/About.vue') 
+  },
+  { 
+    path: '/vue3-syntax', 
+    name: 'Vue3Syntax', 
+    component: () => import('../views/Vue3Syntax.vue') 
+  },
+  { 
+    path: '/js-syntax', 
+    name: 'JsSyntax', 
+    component: () => import('../views/JsSyntax.vue') 
+  },
+  { 
+    path: '/todo-list', 
+    name: 'TodoList', 
+    component: () => import('../views/TodoList.vue'),
+    children: [
+      { 
+        path: 'vue3-book', 
+        name: 'Vue3Book', 
+        component: () => import('../views/todolist/Vue3Book.vue')
+      },
+      { 
+        path: 'simple-rest', 
+        name: 'SimpleRest', 
+        component: () => import('../views/todolist/SimpleRest.vue')
+      },
+    ]
+  },
 ]
 
 const router = createRouter({
@@ -34,7 +66,10 @@ router.beforeEach((to) => {
   // 값을 초기화 시킨 후 다시 변경해줘야,
   // 페이지 새로고침 등에서 정상적으로 값이 변경되었음을 인식함.
   store.commit('changeCurrentMenu', project_menus.non_selection_id)
-  store.commit('changeCurrentMenu', getMenuId(to.fullPath))
+  // to.matched[0].path를 해야 부모 주소가 추출됨
+  // 1..n까지 있을 수 있음(1은 첫번째 자식 주소)
+  // 이 주소로 상단 메뉴의 'active' 상태를 유지함.
+  store.commit('changeCurrentMenu', getMenuId(to.matched[0].path))
 })
 
 export default router

@@ -12,7 +12,6 @@
   background-color: $app-bg-color;
 }
 
-
 .view-page {
   background-color: $view-bg-color;
 }
@@ -58,5 +57,108 @@
     margin-top: -10px;
     margin-right: 5px;
     vertical-align: middle;
+  }
+}
+
+.page-menu {
+  width: 100%;
+  padding-right: 10px;
+
+  .title {
+    padding-top: 15px !important;
+    padding-left: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    height: 60px;
+    color: $page-menu-active-color;
+    // background-color: $page-menu-title-bg-color;
+  }
+
+  .sub-title {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: $page-menu-active-color;
+    border-bottom: 1px solid $page-menu-title-bg-color;
+    // background-color: $page-menu-sub-bg-color;
+  }
+  .menu {
+    font-size: 16px;
+    font-weight: bold;
+    color: $page-menu-color;
+    // border-bottom: 1px solid $page-menu-sub-bg-color;
+  }
+  .caption {
+    font-size: 10px;
+    color: $page-menu-caption-color;
+  }
+}
+
+.page-view {
+  width: 100%;
+  background-color: $view-bg-color;
+
+  .title {
+    font-size: 40px;
+    font-weight: bold;
+    color: $menu-shadow-color;
+    // border-bottom: 2px solid $menu-color;
+    margin-bottom: 12px;
+  }
+  .sub1 {
+    margin-top: 80px;
+    color: $menu-bg-color;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .sub2 {
+    margin-top: 50px;
+    color: $menu-bg-color;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  pre {
+    font-size: 15px;
+    color: $menu-bg-color;
+  }
+  .text {
+    margin-top: 50px;
+    font-size: 20px;
+    color: $menu-bg-color;
+  }
+
+  &.simple-rest {
+
+    .new-todo {
+      margin-bottom: 30px;
+
+      .q-field__label,
+      .q-field__control,
+      i {
+          color: $menu-bg-color !important;
+      }
+      .q-field__control:before {
+        border-bottom: 1px solid $menu-color !important;
+      }
+      .q-field__native {
+        color: $menu-bg-color !important;
+        font-size: 18px;
+      }
+    }
+
+    .select-todo-group {
+      margin-bottom: 30px;
+    
+      .q-radio {
+        margin-left: 20px;
+        font-size: 15px;
+        // font-weight: bold;
+        color: $menu-bg-color;
+      }
+      svg {     // 라디오버튼 이미지
+        color: $menu-bg-color;
+      }
+    }
   }
 }

@@ -6,3 +6,9 @@ $menu-color: #b2dfdb;           // teal-2
 $menu-active-color: white;
 $menu-bg-color: #2f9688;        // teal
 $menu-shadow-color: #24796b;    // teal-8
+
+$page-menu-color: $menu-bg-color;
+$page-menu-active-color: $menu-shadow-color;
+$page-menu-title-bg-color: $menu-color;
+$page-menu-sub-bg-color: #e0f2f1; // teal-1
+$page-menu-caption-color: #80cbc4; // teal-3

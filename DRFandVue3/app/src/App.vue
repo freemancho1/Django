@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import MainMenu from '@/components/MainMenu.vue'
+import MainMenu from '@/components/menu/MainMenu.vue'
 </script>
 
 <style lang="scss">
