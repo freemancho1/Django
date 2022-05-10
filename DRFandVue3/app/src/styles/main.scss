@@ -92,6 +92,7 @@
   .caption {
     font-size: 10px;
     color: $page-menu-caption-color;
+    line-height: 15px !important;
   }
 }
 
@@ -102,30 +103,32 @@
   .title {
     font-size: 40px;
     font-weight: bold;
-    color: $menu-shadow-color;
+    color: $text2-color;
+    // color: $menu-shadow-color;
     // border-bottom: 2px solid $menu-color;
     margin-bottom: 12px;
   }
   .sub1 {
     margin-top: 80px;
-    color: $menu-bg-color;
+    color: $text2-color;
+    // color: $menu-bg-color;
     font-size: 30px;
     font-weight: bold;
   }
   .sub2 {
     margin-top: 50px;
-    color: $menu-bg-color;
+    color: $text2-color;
     font-size: 20px;
     font-weight: bold;
   }
   pre {
     font-size: 15px;
-    color: $menu-bg-color;
+    color: $text2-color;
   }
   .text {
     margin-top: 50px;
     font-size: 20px;
-    color: $menu-bg-color;
+    color: $text3-color;
   }
 
   &.simple-rest {
@@ -136,29 +139,61 @@
       .q-field__label,
       .q-field__control,
       i {
-          color: $menu-bg-color !important;
+          color: $text2-color !important;
       }
       .q-field__control:before {
-        border-bottom: 1px solid $menu-color !important;
+        border-bottom: 1px solid $text3-color !important;
       }
       .q-field__native {
-        color: $menu-bg-color !important;
+        color: $text2-color !important;
         font-size: 18px;
       }
     }
 
-    .select-todo-group {
+    .filter {
       margin-bottom: 30px;
-    
-      .q-radio {
-        margin-left: 20px;
-        font-size: 15px;
-        // font-weight: bold;
-        color: $menu-bg-color;
+      padding-right: 20px;
+      background-color: $text3-color;
+      color: $text0-color;
+      font-size: 15px !important;
+
+      &.all {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
       }
+
       svg {     // 라디오버튼 이미지
-        color: $menu-bg-color;
+        color: $text0-color;
       }
     }
+
+    .todo-list {
+      margin: 0 -16px 0 -16px;
+
+      .todo-item {
+        font-size: 20px;
+        color: $text2-color;
+        & .q-icon {
+          color: $text2-color;
+        }
+        &.completed {
+          color: $text12-color;
+          & .q-icon {
+            color: $text12-color;
+          }
+        }
+      }
+      // .todo-item.completed {
+      //   color: $text11-color;
+      //   & .q-icon {
+      //     color: $text11-color;
+      //   }
+      // }
+    }
+    .non-todo-list {
+      color: $text13-color;
+      font-size: 15px;
+    }
+
   }
 }
